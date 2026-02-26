@@ -1,1 +1,35 @@
 flashcards.code-workspace
+# Go modules
+vendor/
+pkg/
+
+# Built files
+build/
+
+# Compiled Go binary
+bin/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.log
+
+# Cache files
+*.cache
+
+# Go coverage reports
+coverage.out
+
+# Environment variables
+.env
+
+# Database
+*.db
+
+# Others
+.DS_Store

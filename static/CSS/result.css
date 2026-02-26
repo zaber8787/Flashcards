@@ -1,0 +1,387 @@
+/* ── Reset & base ── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #e0e0e0;
+}
+
+/* ── 頂部資訊列 ── */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    background: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+}
+
+.back-link {
+    color: #8899cc;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.15s;
+}
+
+.back-link:hover {
+    color: #c0d0f0;
+}
+
+.topbar-info {
+    font-size: 0.8rem;
+    color: #5a6a80;
+    letter-spacing: 0.5px;
+}
+
+/* ── 主容器 ── */
+.container {
+    flex: 1;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 16px 100px;
+}
+
+/* ── 狀態訊息 ── */
+.status-msg {
+    text-align: center;
+    padding: 48px 0;
+    font-size: 1rem;
+    color: #6a7a90;
+    letter-spacing: 1px;
+}
+
+.empty-msg {
+    text-align: center;
+    padding: 64px 0;
+    font-size: 1rem;
+    color: #6a7a90;
+    letter-spacing: 1px;
+}
+
+/* ── 表格 ── */
+.table-wrap {
+    overflow-x: auto;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.vocab-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.vocab-table thead tr {
+    background: rgba(91, 155, 213, 0.15);
+    border-bottom: 1px solid rgba(91, 155, 213, 0.25);
+}
+
+.vocab-table th {
+    padding: 14px 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8899cc;
+    text-align: left;
+}
+
+.vocab-table td {
+    padding: 13px 20px;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    vertical-align: middle;
+}
+
+.vocab-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.vocab-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* 英文單字 */
+.vocab-table td:first-child {
+    font-weight: 700;
+    color: #cce0ff;
+    letter-spacing: 0.5px;
+}
+
+/* 中文釋義 */
+.vocab-table td:nth-child(2) {
+    color: #d0e8d0;
+}
+
+/* 英標 */
+.vocab-table td:nth-child(3) {
+    color: #b0c8e8;
+    font-style: italic;
+    font-size: 0.88rem;
+}
+
+/* 字根 */
+.vocab-table td:nth-child(4) {
+    color: #c0b0e0;
+    font-size: 0.88rem;
+}
+
+/* ── 電腦才顯示的欄位 ── */
+.desktop-only {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .desktop-only {
+        display: table-cell;
+    }
+
+    .container {
+        padding: 32px 32px 100px;
+    }
+
+    .vocab-table th,
+    .vocab-table td {
+        padding: 14px 24px;
+    }
+}
+
+/* ── 底部操作列 ── */
+.action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 20px;
+    background: rgba(12, 20, 40, 0.92);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 100;
+}
+
+.nav-btns {
+    display: flex;
+    gap: 10px;
+}
+
+/* ── 按鈕 ── */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+
+.btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn-nav {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    color: #c0d0e8;
+}
+
+.btn-nav:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-1px);
+}
+
+.btn-quiz {
+    background: linear-gradient(135deg, #5b9bd5, #3a7bd5);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(58, 123, 213, 0.4);
+    padding: 10px 28px;
+}
+
+.btn-quiz:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(58, 123, 213, 0.55);
+}
+
+@media (min-width: 640px) {
+    .action-bar {
+        padding: 16px 40px;
+    }
+
+    .btn {
+        padding: 11px 28px;
+        font-size: 0.9rem;
+    }
+
+    .btn-quiz {
+        padding: 11px 36px;
+    }
+}
+
+/* ════════════════════════════════════════
+   測驗視圖
+════════════════════════════════════════ */
+
+/* action-bar 面板切換 */
+.action-panel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.action-panel[hidden] {
+    display: none;
+}
+
+/* 進度條文字 */
+.quiz-progress {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6a7a90;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    min-height: 1.2em;
+}
+
+/* 字卡 */
+.quiz-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 48px 32px 36px;
+    max-width: 480px;
+    margin: 0 auto;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-height: 220px;
+    justify-content: center;
+}
+
+.quiz-card:active {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.quiz-card-main {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #e8f0ff;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+/* 顯示中文時縮小字型 */
+.quiz-card-main.is-value {
+    font-size: 1.5rem;
+    color: #b0e8b8;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.quiz-symbol {
+    font-size: 0.95rem;
+    color: #7aaccc;
+    font-style: italic;
+    letter-spacing: 1px;
+    min-height: 1.4em;
+}
+
+/* 完成畫面 */
+.quiz-done-msg {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #7ecba1;
+    padding: 80px 0 40px;
+    letter-spacing: 1px;
+}
+
+/* 測驗按鈕 */
+.btn-unknown {
+    background: rgba(224, 90, 90, 0.2);
+    border: 1.5px solid rgba(224, 90, 90, 0.5);
+    color: #e88888;
+    flex: 1;
+}
+
+.btn-unknown:hover {
+    background: rgba(224, 90, 90, 0.32);
+}
+
+.btn-symbol {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    color: #aac8e8;
+}
+
+.btn-symbol:hover {
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.btn-know {
+    background: rgba(80, 200, 120, 0.2);
+    border: 1.5px solid rgba(80, 200, 120, 0.5);
+    color: #7ecba1;
+    flex: 1;
+}
+
+.btn-know:hover {
+    background: rgba(80, 200, 120, 0.32);
+}
+
+.btn-back {
+    background: linear-gradient(135deg, #5b9bd5, #3a7bd5);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(58, 123, 213, 0.4);
+    margin: 0 auto;
+    padding: 11px 40px;
+}
+
+.btn-back:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(58, 123, 213, 0.55);
+}
+
+@media (min-width: 640px) {
+    .quiz-card {
+        padding: 56px 48px 44px;
+        min-height: 260px;
+    }
+
+    .quiz-card-main {
+        font-size: 2.4rem;
+    }
+
+    .quiz-card-main.is-value {
+        font-size: 1.8rem;
+    }
+}

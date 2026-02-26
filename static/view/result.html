@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>結果 — Flashcards</title>
+    <link rel="stylesheet" href="../css/result.css" />
+</head>
+<body>
+    <!-- 頂部資訊列 -->
+    <header class="topbar">
+        <a class="back-link" href="/">← 返回設定</a>
+        <span class="topbar-info" id="topbarInfo"></span>
+    </header>
+
+    <!-- 主要內容 -->
+    <main class="container">
+        <!-- 載入中 / 錯誤訊息 -->
+        <div id="statusMsg" class="status-msg"></div>
+
+        <!-- 表格 (手機 2 欄 / 電腦 4 欄) -->
+        <div class="table-wrap" id="tableWrap" hidden>
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>英文</th>
+                        <th>中文</th>
+                        <th class="desktop-only">英標</th>
+                        <th class="desktop-only">字根</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- 空結果提示 -->
+        <div id="emptyMsg" class="empty-msg" hidden>
+            沒有符合條件的單字
+        </div>
+
+        <!-- 測驗視圖 -->
+        <div id="quizView" hidden>
+            <!-- 進度 -->
+            <div class="quiz-progress" id="quizProgress"></div>
+
+            <!-- 字卡 -->
+            <div class="quiz-card" id="quizCard">
+                <div class="quiz-card-main" id="quizCardMain"></div>
+                <div class="quiz-symbol" id="quizSymbol"></div>
+            </div>
+        </div>
+
+        <!-- 完成畫面 -->
+        <div id="quizDoneView" hidden>
+            <div class="quiz-done-msg">全部完成！</div>
+        </div>
+    </main>
+
+    <!-- 底部操作列 -->
+    <footer class="action-bar">
+        <!-- 表格模式 -->
+        <div id="tableActions" class="action-panel">
+            <div class="nav-btns">
+                <button class="btn btn-nav" id="prevBtn" disabled>← 上一頁</button>
+                <button class="btn btn-nav" id="nextBtn" disabled>下一頁 →</button>
+            </div>
+            <button class="btn btn-quiz" id="quizBtn" disabled>開始測驗</button>
+        </div>
+
+        <!-- 測驗模式 -->
+        <div id="quizActions" class="action-panel" hidden>
+            <button class="btn btn-unknown" id="unknownBtn">不會</button>
+            <button class="btn btn-symbol" id="symbolBtn">音標</button>
+            <button class="btn btn-know" id="knowBtn">會</button>
+        </div>
+
+        <!-- 完成模式 -->
+        <div id="doneActions" class="action-panel" hidden>
+            <button class="btn btn-back" id="backBtn">返回單字集</button>
+        </div>
+    </footer>
+
+    <script src="../js/result.js"></script>
+</body>
+</html>

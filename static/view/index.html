@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="../css/index.css" />
+
+</head>
+<body>
+    <div class="card">
+        <h1 class="card-title">Flashcards</h1>
+        <p class="card-subtitle">練習設定</p>
+
+        <!-- 每組數量 -->
+        <div class="field">
+            <label>每組數量</label>
+            <div class="chip-group" id="limitGroup">
+                <button class="chip" data-value="10">10</button>
+                <button class="chip active" data-value="20">20</button>
+                <button class="chip" data-value="50">50</button>
+                <button class="chip" data-value="100">100</button>
+            </div>
+        </div>
+
+        <!-- Important -->
+        <div class="field">
+            <label>Important</label>
+            <div class="toggle-group" id="importantGroup">
+                <button class="toggle-btn true-btn" data-value="true">True</button>
+                <button class="toggle-btn false-btn active" data-value="false">False</button>
+            </div>
+        </div>
+
+        <!-- 起始單字 -->
+        <div class="field">
+            <label>起始單字 ID</label>
+            <div class="input-wrap">
+                <input type="number" id="startInput" min="1" placeholder="預設從 1 開始" />
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 開始按鈕 -->
+        <button class="btn-start" id="startBtn">開始練習</button>
+        <p class="summary" id="summary">
+            將從 ID&nbsp;<span id="sumStart">1</span>&nbsp;開始，練習&nbsp;<span id="sumLimit">20</span>&nbsp;個單字
+        </p>
+    </div>
+
+    <script src="../js/index.js"></script>
+</body>
+</html>

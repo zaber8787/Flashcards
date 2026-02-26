@@ -1,0 +1,220 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #e0e0e0;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 48px 56px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+}
+
+.card-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.card-subtitle {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #8899aa;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.field {
+    margin-bottom: 28px;
+}
+
+.field label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8899cc;
+    margin-bottom: 10px;
+}
+
+/* ── 每組數量 ── */
+.chip-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.chip {
+    flex: 1;
+    min-width: 56px;
+    padding: 10px 0;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    background: transparent;
+    color: #ccdde8;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.18s ease;
+    user-select: none;
+}
+
+.chip:hover {
+    border-color: #5b9bd5;
+    color: #ffffff;
+    background: rgba(91, 155, 213, 0.12);
+}
+
+.chip.active {
+    border-color: #5b9bd5;
+    background: rgba(91, 155, 213, 0.25);
+    color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(91, 155, 213, 0.2);
+}
+
+/* ── Important 切換 ── */
+.toggle-group {
+    display: flex;
+    gap: 10px;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 11px 0;
+    border-radius: 10px;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    user-select: none;
+    letter-spacing: 0.5px;
+}
+
+.toggle-btn.true-btn {
+    color: #7ecba1;
+}
+
+.toggle-btn.false-btn {
+    color: #e07878;
+}
+
+.toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.toggle-btn.active.true-btn {
+    border-color: #7ecba1;
+    background: rgba(126, 203, 161, 0.18);
+    box-shadow: 0 0 0 3px rgba(126, 203, 161, 0.15);
+}
+
+.toggle-btn.active.false-btn {
+    border-color: #e07878;
+    background: rgba(224, 120, 120, 0.18);
+    box-shadow: 0 0 0 3px rgba(224, 120, 120, 0.15);
+}
+
+/* ── 起始單字 ── */
+.input-wrap {
+    position: relative;
+}
+
+.input-wrap input[type="number"] {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    -moz-appearance: textfield;
+}
+
+.input-wrap input[type="number"]::-webkit-outer-spin-button,
+.input-wrap input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.input-wrap input[type="number"]:focus {
+    border-color: #5b9bd5;
+    box-shadow: 0 0 0 3px rgba(91, 155, 213, 0.2);
+}
+
+.input-wrap input::placeholder {
+    color: #4a5568;
+}
+
+.divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+    margin: 32px 0;
+}
+
+/* ── 開始按鈕 ── */
+.btn-start {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #5b9bd5, #3a7bd5);
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    box-shadow: 0 6px 20px rgba(58, 123, 213, 0.4);
+}
+
+.btn-start:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(58, 123, 213, 0.55);
+}
+
+.btn-start:active {
+    transform: translateY(0);
+    opacity: 0.9;
+}
+
+.summary {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #5a6a80;
+    margin-top: 18px;
+    letter-spacing: 0.5px;
+}
+
+.summary span {
+    color: #8899cc;
+    font-weight: 600;
+}
