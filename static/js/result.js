@@ -28,23 +28,16 @@ function updateTopbarInfo() {
         `每組 ${limit} 個・Important: ${important ? 'True' : 'False'}・從 ID ${currentStart}`;
 }
 
-function updateUrlStart(start, mode = 'push') {
+function redirectToStart(start) {
     const url = new URL(window.location.href);
     url.searchParams.set('limit', String(limit));
     url.searchParams.set('important', String(important));
     url.searchParams.set('start', String(start));
-
-    if (mode === 'replace') {
-        window.history.replaceState(null, '', url);
-        return;
-    }
-
-    window.history.pushState(null, '', url);
+    window.location.assign(url);
 }
 
 // ── 資料拉取 ───────────────────────────────────────────────
-async function loadData(start, options = {}) {
-    const { syncUrlMode = null } = options;
+async function loadData(start) {
     statusMsg.textContent = '載入中…';
     tableWrap.hidden = true;
     emptyMsg.hidden = true;
@@ -71,10 +64,6 @@ async function loadData(start, options = {}) {
         currentData = data;
         currentStart = start;
         updateTopbarInfo();
-
-        if (syncUrlMode === 'push' || syncUrlMode === 'replace') {
-            updateUrlStart(currentStart, syncUrlMode);
-        }
 
         renderTable(data);
         updatePagination();
@@ -109,16 +98,11 @@ function updatePagination() {
 }
 
 prevBtn.addEventListener('click', () => {
-    loadData(Math.max(1, currentStart - limit), { syncUrlMode: 'push' });
+    redirectToStart(Math.max(1, currentStart - limit));
 });
 
 nextBtn.addEventListener('click', () => {
-    loadData(currentStart + limit, { syncUrlMode: 'push' });
-});
-
-window.addEventListener('popstate', () => {
-    const nextStart = parseInt(new URLSearchParams(window.location.search).get('start') ?? '1', 10);
-    loadData(nextStart < 1 ? 1 : nextStart);
+    redirectToStart(currentStart + limit);
 });
 
 // ── 開始測驗 ───────────────────────────────────────────────
@@ -256,5 +240,5 @@ function escHtml(str) {
 }
 
 // ── 初始載入 ───────────────────────────────────────────────
-loadData(currentStart, { syncUrlMode: 'replace' });
+loadData(currentStart);
 
