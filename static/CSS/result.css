@@ -123,6 +123,24 @@ body {
     letter-spacing: 0.5px;
 }
 
+.word-speak-btn {
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+}
+
+.word-speak-btn:hover {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 /* 中文釋義 */
 .vocab-table td:nth-child(2) {
     color: #d0e8d0;
@@ -315,6 +333,12 @@ body {
     min-height: 1.4em;
 }
 
+.quiz-speak-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+}
+
 /* 完成畫面 */
 .quiz-done-msg {
     text-align: center;
@@ -345,6 +369,18 @@ body {
 
 .btn-symbol:hover {
     background: rgba(255, 255, 255, 0.13);
+}
+
+.btn-speak {
+    background: rgba(91, 155, 213, 0.15);
+    border: 1.5px solid rgba(91, 155, 213, 0.45);
+    color: #cce0ff;
+    padding: 8px 14px;
+    font-size: 0.78rem;
+}
+
+.btn-speak:hover {
+    background: rgba(91, 155, 213, 0.26);
 }
 
 .btn-know {

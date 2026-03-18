@@ -79,12 +79,26 @@ function renderTable(data) {
     tableBody.innerHTML = '';
     data.forEach(v => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${escHtml(v.word)}</td>
-            <td>${escHtml(v.value)}</td>
-            <td class="desktop-only">${escHtml(v.symbol)}</td>
-            <td class="desktop-only">${escHtml(v.roots)}</td>
-        `;
+
+        const wordTd = document.createElement('td');
+        const speakWordBtn = document.createElement('button');
+        speakWordBtn.type = 'button';
+        speakWordBtn.className = 'word-speak-btn';
+        speakWordBtn.textContent = v.word || '';
+        wordTd.appendChild(speakWordBtn);
+
+        const valueTd = document.createElement('td');
+        valueTd.textContent = v.value || '';
+
+        const symbolTd = document.createElement('td');
+        symbolTd.className = 'desktop-only';
+        symbolTd.textContent = v.symbol || '';
+
+        const rootsTd = document.createElement('td');
+        rootsTd.className = 'desktop-only';
+        rootsTd.textContent = v.roots || '';
+
+        tr.append(wordTd, valueTd, symbolTd, rootsTd);
         tableBody.appendChild(tr);
     });
 }
@@ -116,6 +130,7 @@ const tableActions = document.getElementById('tableActions');
 const quizActions = document.getElementById('quizActions');
 const doneActions = document.getElementById('doneActions');
 const unknownBtn = document.getElementById('unknownBtn');
+const speakBtn = document.getElementById('speakBtn');
 const symbolBtn = document.getElementById('symbolBtn');
 const knowBtn = document.getElementById('knowBtn');
 const backBtn = document.getElementById('backBtn');
@@ -126,6 +141,25 @@ let quizIndex = 0;    // 目前第幾張
 let unknownDeck = [];   // 這輪不會的
 let showValue = false; // false=英文 true=中文
 let showSym = false; // 是否顯示音標
+const synth = window.speechSynthesis;
+
+function speakWord(word) {
+    if (!word || !synth) return;
+
+    synth.cancel();
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = 'en-US';
+
+    const voices = synth.getVoices();
+    const englishVoice = voices.find(voice =>
+        typeof voice.lang === 'string' && voice.lang.toLowerCase().startsWith('en'),
+    );
+    if (englishVoice) {
+        utterance.voice = englishVoice;
+    }
+
+    synth.speak(utterance);
+}
 
 function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -174,6 +208,18 @@ quizCard.addEventListener('click', () => {
     showValue = !showValue;
     quizCardMain.textContent = showValue ? v.value : v.word;
     quizCardMain.classList.toggle('is-value', showValue);
+});
+
+speakBtn.addEventListener('click', () => {
+    const v = quizDeck[quizIndex];
+    speakWord(v.word);
+});
+
+tableBody.addEventListener('click', event => {
+    const target = event.target;
+    if (!(target instanceof HTMLButtonElement)) return;
+    if (!target.classList.contains('word-speak-btn')) return;
+    speakWord(target.textContent?.trim() || '');
 });
 
 // 音標按鈕
